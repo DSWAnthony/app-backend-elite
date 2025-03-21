@@ -1,0 +1,25 @@
+spring:
+  application:
+    name: app-backend-elite
+
+  datasource:
+    url: jdbc:mysql://localhost:3306/inventario_elite
+    username: root
+    password:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+
+  cloud:
+    azure:
+      storage:
+        account-name: ${AZURE_STORAGE_ACCOUNT_NAME:ACCOUNT_NAME}
+        account-key: ${AZURE_STORAGE_ACCOUNT_KEY:ACCOUNT_KEY}
+
+  servlet:
+    multipart:
+      max-file-size: 2MB
+      max-request-size: 20MB
+
