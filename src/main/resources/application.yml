@@ -3,9 +3,9 @@ spring:
     name: app-backend-elite
 
   datasource:
-    url: jdbc:mysql://localhost:3306/demo_rest
-    username: root
-    password:
+    url: jdbc:mysql://elitezapatillas.mysql.database.azure.com:3306/almacen_elite
+    username: adminelite
+    password: Grupo002@
     driver-class-name: com.mysql.cj.jdbc.Driver
 
   jpa:
@@ -15,8 +15,8 @@ spring:
   cloud:
     azure:
       storage:
-        account-name: ${AZURE_STORAGE_ACCOUNT_NAME:ACCOUNT_NAME}
-        account-key: ${AZURE_STORAGE_ACCOUNT_KEY:ACCOUNT_KEY}
+        account-name: demostorage939
+        account-key: mqEkPXLzeaaRtfX4PZg4V0Fra8An6OzXjFPLi435bkjFT7e66teAD0IqJipkt5IiIzWVMj5ncztg+AStYdJLxQ==
 
   servlet:
     multipart:
@@ -27,3 +27,6 @@ jwt:
   expiration: 3600000
   expiration-refresh: 86400000
   secret: VGhpc0lzQUNvbXBsZXhTdXBlclNlY3JldEtleU9mMjU2Qml0cw==
+
+url:
+  frontend: ${frontend-uri:http://localhost:5173}
