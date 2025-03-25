@@ -9,7 +9,7 @@ public class ZapatoMapper {
         Zapato entity = new Zapato();
         entity.setColor(zapato.color());
         if (zapato.modelo().id() == null) entity.setModelo(ModeloMapper.toEntity(zapato.modelo()));
-        entity.setSku(zapato.sku());
+        if (zapato.sku() != null) entity.setSku(zapato.sku());
         entity.setTalla(zapato.talla());
         entity.setUrlImagen(zapato.urlImagen());
         entity.setPrecioComercial(zapato.precioComercial());

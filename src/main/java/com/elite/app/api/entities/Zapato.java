@@ -18,7 +18,7 @@ public class Zapato {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer zapato_id;
 
-    @ManyToOne(cascade = CascadeType.PERSIST)
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
     @JoinColumn(name = "modelo_id", nullable = false)
     private Modelo modelo;
 

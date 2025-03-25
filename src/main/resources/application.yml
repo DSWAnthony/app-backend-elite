@@ -3,7 +3,7 @@ spring:
     name: app-backend-elite
 
   datasource:
-    url: jdbc:mysql://localhost:3306/inventario_elite
+    url: jdbc:mysql://localhost:3306/demo_rest
     username: root
     password:
     driver-class-name: com.mysql.cj.jdbc.Driver
@@ -23,3 +23,7 @@ spring:
       max-file-size: 2MB
       max-request-size: 20MB
 
+jwt:
+  expiration: 3600000
+  expiration-refresh: 86400000
+  secret: VGhpc0lzQUNvbXBsZXhTdXBlclNlY3JldEtleU9mMjU2Qml0cw==

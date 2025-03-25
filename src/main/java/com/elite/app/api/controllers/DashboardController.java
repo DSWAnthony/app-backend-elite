@@ -1,5 +1,6 @@
 package com.elite.app.api.controllers;
 
+import com.elite.app.api.models.response.IngresoReciente;
 import com.elite.app.api.models.response.IngresosMensualesResp;
 import com.elite.app.api.models.response.StockPorCategoria;
 import com.elite.app.api.models.response.StockPorMarca;
@@ -60,6 +61,12 @@ public class DashboardController {
     public ResponseEntity<List<IngresosMensualesResp>> getIngresosDelAno(@PathVariable int ano) {
         return new ResponseEntity<>(dashboardService.obtenerIngresosDelAno(ano), HttpStatus.OK);
     }
+
+    @GetMapping("/ingresos-recientes")
+    public ResponseEntity<List<IngresoReciente>> getIngresosReciente() {
+        return new ResponseEntity<>(dashboardService.getIngresoReciente(),HttpStatus.OK);
+    }
+
 
 
 }

@@ -1,6 +1,7 @@
 package com.elite.app.api.repository;
 
 import com.elite.app.api.entities.Marca;
+import com.elite.app.api.models.response.IngresoReciente;
 import com.elite.app.api.models.response.IngresosMensualesResp;
 import com.elite.app.api.models.response.StockPorCategoria;
 import com.elite.app.api.models.response.StockPorMarca;
@@ -32,4 +33,7 @@ public interface MarcaRepository extends JpaRepository<Marca, Integer> {
 
     @Query(value = "{CALL IngresosMensuales(:anio)}",nativeQuery = true)
     List<Object[]> obtenerIngresosMensuales(@Param("anio") Integer anio);
+
+    @Query(value = "SELECT * FROM ListarRecientes",nativeQuery = true)
+    List<IngresoReciente> listarRecientes();
 }

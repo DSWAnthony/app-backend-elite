@@ -2,6 +2,7 @@ package com.elite.app.api.services.impl;
 
 import com.elite.app.api.entities.Modelo;
 import com.elite.app.api.entities.Zapato;
+import com.elite.app.api.mappers.ModeloMapper;
 import com.elite.app.api.mappers.ZapatoMapper;
 import com.elite.app.api.models.request.ZapatoRequest;
 import com.elite.app.api.repository.ZapatoRepository;
@@ -51,9 +52,13 @@ public class ZapatoServiceImpl implements ZapatoService {
 
                     Zapato entity = ZapatoMapper.toEntity(zapato);
 
-                    if (zapato.modelo().id() !=null ){
-                        modeloService.update(zapato.modelo().id(), zapato.modelo());
+                    if (zapato.modelo().id() != null) {
+                        Modelo modeloActualizado = modeloService.update(zapato.modelo().id(), zapato.modelo());
+                        entity.setModelo(modeloActualizado);
+                    } else {
+                        entity.setModelo(ModeloMapper.toEntity(zapato.modelo()));
                     }
+
 
                     entity.setZapato_id(zapatoEntity.getZapato_id());
 

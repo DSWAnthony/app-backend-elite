@@ -3,6 +3,8 @@ package com.elite.app.api.services.impl;
 import com.elite.app.api.entities.Categoria;
 import com.elite.app.api.entities.Marca;
 import com.elite.app.api.entities.Modelo;
+import com.elite.app.api.mappers.CategoriaMapper;
+import com.elite.app.api.mappers.MarcaMapper;
 import com.elite.app.api.mappers.ModeloMapper;
 import com.elite.app.api.models.request.CategoriaRequest;
 import com.elite.app.api.models.request.MarcaRequest;
@@ -54,16 +56,23 @@ public class ModeloServiceImpl implements ModeloService {
                 .map(modeloEntity -> {
                     Modelo entity = ModeloMapper.toEntity(modelo);
                     entity.setModelo_id(modeloEntity.getModelo_id());
-
                     if (modelo.categoria().id() != null){
-                        actualizarCategoria(modeloEntity, modelo.categoria());
+                        Categoria categoria = actualizarCategoria(modeloEntity, modelo.categoria());
+                        entity.setCategoria(categoria);
+                        System.out.println("Paso A Categoria");
+                    } else {
+                        entity.setCategoria(CategoriaMapper.toEntity(modelo.categoria()));
                     }
 
                     if (modelo.marca().id() != null){
-                        actualizarMarca(modeloEntity, modelo.marca());
+                        Marca marca = actualizarMarca(modeloEntity, modelo.marca());
+                        entity.setMarca(marca);
+                        System.out.println("Paso A Marca");
+                    } else {
+                        entity.setMarca(MarcaMapper.toEntity(modelo.marca()));
                     }
 
-                    return modeloRepository.save(modeloEntity);
+                    return modeloRepository.save(entity);
                 })
                 .orElseThrow(() -> new RuntimeException("Modelo no Existe"));
     }
@@ -83,18 +92,16 @@ public class ModeloServiceImpl implements ModeloService {
     }
 
 
-    private void actualizarCategoria(Modelo entity, CategoriaRequest categoria){
-        if (categoria.id() !=null){
-            Categoria categoriaEntity =  categoriaService.getById(categoria.id());
-            entity.setCategoria(categoriaEntity);
-        }
+    private Categoria actualizarCategoria(Modelo entity, CategoriaRequest categoria){
+        Categoria categoriaEntity =  categoriaService.getById(categoria.id());
+        entity.setCategoria(categoriaEntity);
+        return categoriaEntity;
     }
 
-    private void actualizarMarca(Modelo entity, MarcaRequest marca){
-        if (marca.id() !=null){
-            Marca marcaEntity =  marcaService.getById(marca.id());
-            entity.setMarca(marcaEntity);
-        }
+    private Marca actualizarMarca(Modelo entity, MarcaRequest marca){
+        Marca marcaEntity =  marcaService.getById(marca.id());
+        entity.setMarca(marcaEntity);
+        return marcaEntity;
     }
 
 

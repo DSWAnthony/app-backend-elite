@@ -6,7 +6,6 @@ import com.azure.storage.blob.BlobServiceClient;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.io.IOException;
 import java.io.InputStream;
 import java.util.UUID;
 
@@ -16,7 +15,7 @@ public class AzureImageStorageClient implements ImageStorageClient{
     private final BlobServiceClient blobServiceClient;
 
     @Override
-    public String uploadImage(String containerName, String originalImageName, InputStream data, long length) throws IOException {
+    public String uploadImage(String containerName, String originalImageName, InputStream data, long length) {
         BlobContainerClient blobContainerClient = blobServiceClient.getBlobContainerClient(containerName);
 
         String newImageName = UUID.randomUUID() + originalImageName.substring(originalImageName.lastIndexOf("."));

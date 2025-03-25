@@ -44,6 +44,11 @@ public class EntradaServiceImpl implements EntradaService {
         return entradaRepository.findById(id)
                 .map(entradaEntity -> {
                     Entrada entity = EntradaMapper.toEntity(entrada);
+
+                    if (entrada.proveedor_id() !=null){
+                       Proveedor proveedor = proveedorService.getById(entrada.proveedor_id());
+                       entity.setProveedor(proveedor);
+                    }
                     entity.setEntrada_id(entradaEntity.getEntrada_id());
                     return entradaRepository.save(entity);
                 })

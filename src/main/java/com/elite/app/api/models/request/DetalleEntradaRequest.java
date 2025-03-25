@@ -7,6 +7,7 @@ public record DetalleEntradaRequest(
         ZapatoRequest zapato,
         UbicacionAlmacenRequest almacen,
         int cantidad,
-        BigDecimal precio_compra
+        BigDecimal precio_compra,
+        Integer inventario_id
 ) {
 }

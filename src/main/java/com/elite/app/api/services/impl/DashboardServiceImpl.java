@@ -1,5 +1,6 @@
 package com.elite.app.api.services.impl;
 
+import com.elite.app.api.models.response.IngresoReciente;
 import com.elite.app.api.models.response.IngresosMensualesResp;
 import com.elite.app.api.models.response.StockPorCategoria;
 import com.elite.app.api.models.response.StockPorMarca;
@@ -70,6 +71,11 @@ public class DashboardServiceImpl implements DashboardService {
         return getIngresosMensualesResps(datosPorMes);
     }
 
+    @Override
+    public List<IngresoReciente> getIngresoReciente() {
+        return marcaRepository.listarRecientes();
+    }
+
     private static List<IngresosMensualesResp> getIngresosMensualesResps(Map<String, Map<String, Integer>> datosPorMes) {
         List<IngresosMensualesResp> datosFinales = new ArrayList<>();
         for (Map.Entry<String, Map<String, Integer>> entry : datosPorMes.entrySet()) {
@@ -80,6 +86,7 @@ public class DashboardServiceImpl implements DashboardService {
             Map<String, Integer> valores = entry.getValue();
             valores.putIfAbsent("Nike", 0);
             valores.putIfAbsent("Adidas", 0);
+            valores.putIfAbsent("Rebook", 0);
 
             dto.setMarcas(valores);
             datosFinales.add(dto);

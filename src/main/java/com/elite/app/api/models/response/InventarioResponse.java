@@ -18,4 +18,11 @@ public class InventarioResponse {
     private String marca;
     private int stock;
     private String almacen;
+    private int zapato_id;
+    private int modelo_id;
+    private int inventario_id;
+    private int almacen_id;
+    private int entrada_id;
+    private int proveedor_id;
+    private int detalle_id;
 }

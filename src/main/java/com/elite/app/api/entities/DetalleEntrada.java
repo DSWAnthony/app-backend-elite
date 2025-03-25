@@ -17,11 +17,11 @@ public class DetalleEntrada {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer detalle_id;
 
-    @ManyToOne(cascade = CascadeType.PERSIST)
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
     @JoinColumn(name = "entrada_id", nullable = false)
     private Entrada entrada;
 
-    @ManyToOne
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
     @JoinColumn(name = "zapato_id", nullable = false)
     private Zapato zapato;
 
